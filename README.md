@@ -57,12 +57,12 @@ npm install -D handlebars handlebars-loader
 npm install --save gh-pages
 
 8. Указываем скрипты в файле package.json раздел "scripts":
-   <!-- "scripts": {
+   "scripts": {
    "start": "webpack-dev-server --env.mode development",
    "build": "webpack --env.mode production",
    "predeploy": "npm run build",
    "deploy": "gh-pages -d dist"
-   } -->
+   }
 
 9. Создаем структуру проекта
    папка src
@@ -74,10 +74,10 @@ npm install --save gh-pages
 11. Устанавливаем
     a) Файлы настроек
     b) .babelrc https://babeljs.io/docs/en/configuration
-    <!-- {
+    {
     "presets": ["@babel/preset-env"],
     "plugins": ["@babel/plugin-proposal-class-properties"]
-    } -->
+    }
 
 c) postcss.config.js https://github.com/postcss/postcss-loader
 module.exports = {
@@ -85,7 +85,7 @@ plugins: [require("autoprefixer")],
 };
 
 d) .prettierrc https://prettier.io/docs/en/options.html
-<!-- {
+{
 "printWidth": 80,
 "tabWidth": 2,
 "useTabs": false,
@@ -95,16 +95,16 @@ d) .prettierrc https://prettier.io/docs/en/options.html
 "bracketSpacing": true,
 "jsxBracketSameLine": false,
 "proseWrap": "always"
-} -->
+}
 
 e) webpack.config.js (в корне проекта)
-<!-- const path = require("path");
+const path = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const { merge } = require("webpack-merge");
 const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
-const WebpackBar = require("webpackbar"); -->
+const WebpackBar = require("webpackbar");
 
-<!-- // console.log("DIRNAME", **dirname); // глобальная переменная, содержащая абсолютный путь к файлу
+// console.log("DIRNAME", **dirname); // глобальная переменная, содержащая абсолютный путь к файлу
 const loadModeConfig = (env) =>
 require(`./build-utils/${env.mode}.config`)(env);
 // экспорт объекта настроек
@@ -119,9 +119,9 @@ entry: "./index.js",
 output: {
 path: path.resolve(\_\_dirname, "dist"),
 filename: "[name].bundle.js",
-}, -->
+},
 
-<!-- // 3. загрузчики (loaders)
+// 3. загрузчики (loaders)
 module: {
 rules: [
 {
@@ -159,10 +159,10 @@ new WebpackBar(),
 ],
 },
 loadModeConfig(env)
-); -->
+);
 
 f) development.config.js (в папке build-utils)
-<!-- const path = require("path");
+const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = (env) => ({
@@ -187,10 +187,10 @@ clientLogLevel: "warning",
 stats: "errors-only",
 open: true,
 },
-}); -->
+});
 
 g) production.config.js (в папке build-utils)
-<!-- const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 module.exports = (env) => ({
@@ -222,4 +222,4 @@ useShortDoctype: true,
 new MiniCssExtractPlugin({filename: "styles.css"}),
 new OptimizeCssAssetsPlugin(),
 ],
-}); -->
+});
