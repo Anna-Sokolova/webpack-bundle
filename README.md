@@ -4,23 +4,29 @@
 
 ИНСТРУКЦИЯ
 
-Создаем репозиторий на GitHub с двумя файлами
-.gitignore
-MIT License
-Клонируем репозиторий проекта на локальный компьютер, командой:
-git clone url_repo
-в консоли Git Bash, открытой в отведенной папке или диске на вашем компьютере
-Заходим внутрь клонированного репозитория, командой:
-cd repo_name
-в консоли Git Bash
-Открываем папку проекта в редакторе кода VSCode, командой:
-code .
-Открываем TERMINAL в редакторе кода VSCode (внизу окна редактора)
-Инициализируем (создаем) файл package.json в нашем проекте, командой:
-npm init -y
-в TERMINAL - слева в структуре проекта должен появится файл package.json
-Устанавливаем пакеты Webpack через TERMINAL, командой:
-npm install webpack@4.44.1 webpack-cli@3.3.12 webpack-dev-server@3.11.0 webpack-merge@5.1.4
+1. Создаем репозиторий на GitHub с двумя файлами
+   .gitignore
+   MIT License
+
+2. Клонируем репозиторий проекта на локальный компьютер, командой:
+   git clone url_repo
+   в консоли Git Bash, открытой в отведенной папке или диске на вашем компьютере
+
+3. Заходим внутрь клонированного репозитория, командой:
+   cd repo_name
+   в консоли Git Bash
+
+4. Открываем папку проекта в редакторе кода VSCode, командой:
+   code .
+
+5. Открываем TERMINAL в редакторе кода VSCode (внизу окна редактора)
+
+6. Инициализируем (создаем) файл package.json в нашем проекте, командой:
+   npm init -y
+   в TERMINAL - слева в структуре проекта должен появится файл package.json
+
+7. Устанавливаем пакеты Webpack через TERMINAL, командой:
+   npm install webpack@4.44.1 webpack-cli@3.3.12 webpack-dev-server@3.11.0 webpack-merge@5.1.4
 
 должна произойти загрузка пакетов webpack в появившуюся в структуре проекта папку node_modules и создается запись о подключении пакетов в файле package.json раздел "devDependencies"
 
@@ -36,32 +42,36 @@ npm install -D webpackbar
 npm install -D optimize-css-assets-webpack-plugin
 npm install -D handlebars handlebars-loader
 npm install --save gh-pages
-Указываем скрипты в файле package.json раздел "scripts":
-"scripts": {
-"start": "webpack-dev-server --env.mode development",
-"build": "webpack --env.mode production",
-"predeploy": "npm run build",
-"deploy": "gh-pages -d dist"
-}
-Создаем структуру проекта
-папка src
-внутри папки src файл index.js
-Создаем файл конфигураций Webpack в корне проекта
-webpack.config.js
-Устанавливаем
-Файлы настроек
-.babelrc https://babeljs.io/docs/en/configuration
-{
-"presets": ["@babel/preset-env"],
-"plugins": ["@babel/plugin-proposal-class-properties"]
-}
 
-postcss.config.js https://github.com/postcss/postcss-loader
+8. Указываем скрипты в файле package.json раздел "scripts":
+   "scripts": {
+   "start": "webpack-dev-server --env.mode development",
+   "build": "webpack --env.mode production",
+   "predeploy": "npm run build",
+   "deploy": "gh-pages -d dist"
+   }
+
+9. Создаем структуру проекта
+   папка src
+   внутри папки src файл index.js
+
+10. Создаем файл конфигураций Webpack в корне проекта
+    webpack.config.js
+
+11. Устанавливаем
+    a) Файлы настроек
+    b) .babelrc https://babeljs.io/docs/en/configuration
+    {
+    "presets": ["@babel/preset-env"],
+    "plugins": ["@babel/plugin-proposal-class-properties"]
+    }
+
+c) postcss.config.js https://github.com/postcss/postcss-loader
 module.exports = {
 plugins: [require("autoprefixer")],
 };
 
-.prettierrc https://prettier.io/docs/en/options.html
+d) .prettierrc https://prettier.io/docs/en/options.html
 {
 "printWidth": 80,
 "tabWidth": 2,
@@ -74,7 +84,7 @@ plugins: [require("autoprefixer")],
 "proseWrap": "always"
 }
 
-webpack.config.js (в корне проекта)
+e) webpack.config.js (в корне проекта)
 const path = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const { merge } = require("webpack-merge");
@@ -137,7 +147,7 @@ new WebpackBar(),
 loadModeConfig(env)
 );
 
-development.config.js (в папке build-utils)
+f) development.config.js (в папке build-utils)
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
@@ -165,7 +175,7 @@ open: true,
 },
 });
 
-production.config.js (в папке build-utils)
+g) production.config.js (в папке build-utils)
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
